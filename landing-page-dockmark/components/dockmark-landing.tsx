@@ -1,8 +1,8 @@
 'use client'
 
-import { FormEvent, useState } from 'react'
+import { FormEvent, useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
-import { ArrowRight, Check, Cloud, Download, GitBranch, LockKeyhole, Menu, ShieldCheck, Sparkles, X, Zap } from 'lucide-react'
+import { ArrowRight, Check, Cloud, Download, GitBranch, LockKeyhole, Menu, Moon, ShieldCheck, Sparkles, Sun, X, Zap } from 'lucide-react'
 
 const browsers = [
   { name: 'Chrome', mark: 'C', tone: 'bg-[#f2b8be] text-[#2e3138]' },
@@ -27,6 +27,29 @@ function Pingo({ small = false }: { small?: boolean }) {
       animate={reduce ? {} : { y: [0, -12, 0] }}
       transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
     />
+  )
+}
+
+function ThemeToggle() {
+  const [dark, setDark] = useState(false)
+  // O tema real é definido pelo script inline do layout antes da hidratação
+  useEffect(() => setDark(document.documentElement.dataset.theme === 'dark'), [])
+
+  function toggle() {
+    const theme = dark ? 'light' : 'dark'
+    setDark(!dark)
+    document.documentElement.dataset.theme = theme
+    try { localStorage.setItem('theme', theme) } catch {}
+  }
+
+  return (
+    <button className="theme-toggle" onClick={toggle} aria-label={dark ? 'Ativar modo claro' : 'Ativar modo escuro'} title={dark ? 'Modo claro' : 'Modo escuro'}>
+      <AnimatePresence mode="wait" initial={false}>
+        <motion.span key={dark ? 'sun' : 'moon'} initial={{ rotate: -90, opacity: 0, scale: 0.6 }} animate={{ rotate: 0, opacity: 1, scale: 1 }} exit={{ rotate: 90, opacity: 0, scale: 0.6 }} transition={{ duration: 0.2 }}>
+          {dark ? <Sun size={18} /> : <Moon size={18} />}
+        </motion.span>
+      </AnimatePresence>
+    </button>
   )
 }
 
@@ -65,8 +88,11 @@ export default function DockmarkLanding() {
         <div className={`nav-links ${menu ? 'is-open' : ''}`}>
           <a href="#como-funciona" onClick={() => setMenu(false)}>Como funciona</a><a href="#recursos" onClick={() => setMenu(false)}>Recursos</a><a href="#faq" onClick={() => setMenu(false)}>FAQ</a>
         </div>
-        <a className="nav-cta" href="#espera">Entrar na espera <ArrowRight size={15} /></a>
-        <button className="menu-button" onClick={() => setMenu(!menu)} aria-label={menu ? 'Fechar menu' : 'Abrir menu'}>{menu ? <X /> : <Menu />}</button>
+        <div className="nav-actions">
+          <ThemeToggle />
+          <a className="nav-cta" href="#espera">Entrar na espera <ArrowRight size={15} /></a>
+          <button className="menu-button" onClick={() => setMenu(!menu)} aria-label={menu ? 'Fechar menu' : 'Abrir menu'}>{menu ? <X /> : <Menu />}</button>
+        </div>
       </motion.nav>
 
       <section className="hero" id="top">
