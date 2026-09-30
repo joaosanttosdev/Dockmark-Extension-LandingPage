@@ -1,10 +1,12 @@
 'use client'
 
-import { FormEvent, useEffect, useState } from 'react'
+import { FormEvent, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 import FeatureBento from '@/components/feature-bento'
+import SiteFooter from '@/components/site-footer'
 import SyncHub from '@/components/sync-hub'
-import { ArrowRight, Check, Cloud, Download, GitBranch, Menu, Moon, ShieldCheck, Sun, X, Zap } from 'lucide-react'
+import ThemeToggle from '@/components/theme-toggle'
+import { ArrowRight, Check, Cloud, Download, Menu, ShieldCheck, X, Zap } from 'lucide-react'
 
 const browsers = [
   { name: 'Chrome', icon: '/images/browsers/chrome.svg' },
@@ -29,29 +31,6 @@ function Pingo({ small = false }: { small?: boolean }) {
       animate={reduce ? {} : { y: [0, -12, 0] }}
       transition={{ duration: 3.4, repeat: Infinity, ease: 'easeInOut' }}
     />
-  )
-}
-
-function ThemeToggle() {
-  const [dark, setDark] = useState(false)
-  // O tema real é definido pelo script inline do layout antes da hidratação
-  useEffect(() => setDark(document.documentElement.dataset.theme === 'dark'), [])
-
-  function toggle() {
-    const theme = dark ? 'light' : 'dark'
-    setDark(!dark)
-    document.documentElement.dataset.theme = theme
-    try { localStorage.setItem('theme', theme) } catch {}
-  }
-
-  return (
-    <button className="theme-toggle" onClick={toggle} aria-label={dark ? 'Ativar modo claro' : 'Ativar modo escuro'} title={dark ? 'Modo claro' : 'Modo escuro'}>
-      <AnimatePresence mode="wait" initial={false}>
-        <motion.span key={dark ? 'sun' : 'moon'} initial={{ rotate: -90, opacity: 0, scale: 0.6 }} animate={{ rotate: 0, opacity: 1, scale: 1 }} exit={{ rotate: 90, opacity: 0, scale: 0.6 }} transition={{ duration: 0.2 }}>
-          {dark ? <Sun size={18} /> : <Moon size={18} />}
-        </motion.span>
-      </AnimatePresence>
-    </button>
   )
 }
 
@@ -107,7 +86,7 @@ export default function DockmarkLanding() {
 
       <section className="section comparison hub-section"><SectionIntro eyebrow="a dor conhecida" title="Trocar de navegador não deveria apagar seu caminho." copy="Seus favoritos contam a história de como você navega. O Dockmark garante que ela continue com você." /><SyncHub /></section>
 
-      <section className="section steps-section" id="como-funciona"><SectionIntro eyebrow="sem complicação" title="Do seu navegador para a nuvem, em três passos." /><div className="steps-grid">{[['01','Instale','Adicione o Dockmark ao seu navegador favorito.'],['02','Conecte sua nuvem','Escolha onde seus favoritos vão morar.'],['03','Sincronize','Pronto. Eles acompanham você em todo lugar.']].map(([number, title, copy], i) => <motion.div className="step" key={number} {...reveal(i * 0.15)}><span className="step-number">{number}</span><div className="step-icon">{i === 0 ? <Download /> : i === 1 ? <Cloud /> : <Zap />}</div><h3>{title}</h3><p>{copy}</p>{i < 2 && <div className="step-beam" />}</motion.div>)}</div></section>
+      <section className="section steps-section" id="como-funciona"><SectionIntro eyebrow="sem complicação" title="Do seu navegador para a nuvem, em três passos." /><div className="steps-grid">{[['01','Instale','Adicione o Dockmark ao seu navegador favorito.'],['02','Conecte sua nuvem','Escolha onde seus favoritos vão morar.'],['03','Sincronize','Pronto. Eles acompanham você em todo lugar.']].map(([number, title, copy], i) => <motion.div className="step" key={number} {...reveal(i * 0.15)}><span className="step-number">{number}</span><div className="step-icon">{i === 0 ? <Download /> : i === 1 ? <Cloud /> : <Zap />}</div><h3>{title}</h3><p>{copy}</p>{i < 2 && <svg className="step-beam" viewBox="0 0 200 24" preserveAspectRatio="none" aria-hidden="true"><path d="M2 12C50 0 150 24 198 12" /></svg>}</motion.div>)}</div></section>
 
       <section className="section features-section" id="recursos"><SectionIntro eyebrow="feito para durar" title="Tudo que importa. Nada que atrapalha." /><FeatureBento /></section>
 
@@ -117,7 +96,7 @@ export default function DockmarkLanding() {
 
       <motion.section className="signup-section" id="espera" {...reveal()}><div className="signup-mascot"><Pingo small /></div><div className="signup-copy"><p className="eyebrow">fique por perto</p><h2>Seus favoritos<br /><em>estão quase em casa.</em></h2><p>Entre na lista e seja uma das primeiras pessoas a experimentar o Dockmark.</p></div>{sent ? <div className="success-message"><Check size={22} /><strong>Você está na lista!</strong><span>Avisaremos quando o Dockmark estiver pronto.</span></div> : <form className="signup-form" onSubmit={submit} action="[ENDPOINT_DO_FORMULARIO]" method="POST"><label htmlFor="email">Seu melhor e-mail</label><div><input id="email" type="email" required value={email} onChange={e => setEmail(e.target.value)} placeholder="voce@exemplo.com" /><button className="button button-dark" type="submit">Quero entrar <ArrowRight size={16} /></button></div><small>Sem spam. Só novidades do Dockmark.</small></form>}</motion.section>
 
-      <footer><a className="brand" href="#top"><span className="brand-dot" />dockmark</a><p>Favoritos que acompanham você.</p><div className="footer-links"><a href="#top">Privacidade</a><a href="#top">GitHub <GitBranch size={14} /></a><span>© 2024 Dockmark</span></div></footer>
+      <SiteFooter />
     </main>
   )
 }
