@@ -52,5 +52,98 @@ h1 em,h2 em { color:var(--coral); font-style:normal; }
 .step:hover .step-icon { transform:translateY(-4px) rotate(-6deg); }
 .bookmark { transition:background .2s ease; }
 .bookmark:hover { background:#fafafb; }
+/* PC: layout mais largo e tipografia maior para ocupar a tela */
+@media (min-width:1100px) {
+  .nav-wrap,.hero { max-width:calc(1360px + 2 * var(--pad-x)); }
+  .nav-wrap { height:100px; }
+  .brand { font-size:25px; }
+  .nav-links { gap:46px; font-size:15px; }
+  .nav-cta { font-size:15px; }
+  .hero { min-height:760px; padding-top:80px; padding-bottom:110px; }
+  .eyebrow { font-size:12px; letter-spacing:2.6px; margin-bottom:24px; }
+  .eyebrow-dot { width:9px; height:9px; }
+  h1 { max-width:860px; font-size:clamp(66px,5.8vw,100px); }
+  .hero-text { max-width:620px; margin:32px 0 40px; font-size:19px; }
+  .button { min-height:58px; padding:0 30px; font-size:16px; }
+  .microcopy { font-size:13px; margin-top:20px; }
+  .hero-mascot { height:560px; }
+  .hero-glow { width:720px; height:580px; top:90px; }
+  .float-label { padding:11px 18px; font-size:13px; }
+  .label-one { top:95px; }.label-two { bottom:120px; }
+  .pingo-small { width:110px; height:110px; }
+  .compat-section { padding:36px var(--pad-x) 40px; }
+  .compat-section p { font-size:12px; margin-bottom:22px; }
+  .browser-row { gap:56px; }
+  .browser-pill { font-size:17px; gap:11px; }
+  .browser-mark { width:34px; height:34px; font-size:18px; }
+  .section { max-width:calc(1240px + 2 * var(--pad-x)); padding:150px var(--pad-x); }
+  .section-intro { max-width:840px; }
+  .section-intro h2 { font-size:clamp(50px,4.6vw,70px); }
+  .section-copy { max-width:640px; font-size:18px; margin-top:26px; }
+  .compare-grid { gap:32px; margin-top:72px; }
+  .compare-card { min-height:420px; padding:46px; border-radius:34px; }
+  .compare-card h3 { font-size:30px; }
+  .card-number { font-size:13px; margin-bottom:56px; }
+  .messy-links { gap:11px; margin:30px 0; font-size:17px; }
+  .compare-card p { font-size:17px; }
+  .sync-visual { height:140px; gap:26px; }
+  .sync-line { width:140px; }
+  .sync-visual svg { width:44px; height:44px; }
+  .check-stamp { font-size:13px; }
+  .steps-grid { gap:48px; margin-top:88px; }
+  .step-number { font-size:13px; }
+  .step-icon { width:72px; height:72px; border-radius:24px; margin:22px auto 20px; }
+  .step-icon svg { width:30px; height:30px; }
+  .step h3 { font-size:26px; }
+  .step p { max-width:280px; font-size:16px; }
+  .step-beam { top:92px; }
+  .feature-grid { gap:28px; margin-top:72px; }
+  .feature-card { min-height:340px; padding:42px; border-radius:32px; }
+  .feature-large { min-height:708px; }
+  .feature-icon { width:56px; height:56px; border-radius:18px; }
+  .feature-icon svg { width:26px; height:26px; }
+  .feature-card h3 { font-size:32px; margin:28px 0 14px; }
+  .feature-card p { max-width:430px; font-size:17px; }
+  .lock-art { width:340px; height:300px; bottom:-80px; right:40px; }
+  .lock-ring { width:260px; height:260px; }
+  .feature-tag { left:42px; bottom:36px; font-size:12px; }
+  .mini-browser-stack { gap:12px; margin-top:36px; }
+  .mini-browser-stack .browser-mark { width:44px; height:44px; font-size:20px; }
+  .cloud-words { gap:10px; bottom:36px; }
+  .cloud-words span { padding:10px 15px; font-size:13px; }
+  .browser-window { max-width:1140px; margin-top:76px; border-radius:22px; }
+  .window-bar { height:52px; font-size:13px; }
+  .window-dots { left:22px; gap:7px; }
+  .window-dots i { width:11px; height:11px; }
+  .window-profile { width:28px; height:28px; font-size:12px; right:20px; }
+  .window-body { min-height:460px; }
+  .sidebar { width:270px; padding:30px 24px; gap:24px; font-size:15px; }
+  .mini-brand { font-size:18px; }
+  .side-active { padding:12px 14px; }
+  .bookmark-content { padding:48px 60px; }
+  .tiny-label { font-size:11px; }
+  .content-head h3 { font-size:36px; }
+  .synced { padding:9px 15px; font-size:12px; }
+  .bookmark-list { margin-top:36px; }
+  .bookmark { padding:20px 0; gap:18px; font-size:16px; }
+  .bookmark strong { font-size:16px; }
+  .bookmark small { font-size:13px; margin-top:5px; }
+  .faq-section { max-width:calc(980px + 2 * var(--pad-x)); }
+  .faq-list { margin-top:64px; }
+  .faq-item button { padding:30px 4px; font-size:20px; }
+  .faq-plus { font-size:30px; }
+  .faq-item p { max-width:860px; font-size:17px; margin-bottom:30px; }
+  .signup-section { max-width:1360px; margin-bottom:150px; padding:76px 96px; border-radius:38px; grid-template-columns:130px 1fr 1.1fr; gap:52px; }
+  .signup-copy h2 { font-size:50px; }
+  .signup-copy>p:last-child { max-width:400px; font-size:16px; }
+  .signup-form label { font-size:14px; margin-bottom:12px; }
+  .signup-form>div { gap:12px; }
+  .signup-form input { font-size:16px; padding:0 22px; }
+  .signup-form small { font-size:13px; margin-top:14px; }
+  .success-message { font-size:17px; }
+  .success-message span { font-size:14px; }
+  footer { max-width:1360px; padding:40px 0 60px; font-size:14px; }
+  .footer-links { gap:28px; }
+}
 @media (max-width:760px) { :root { --pad-x:20px; }.nav-wrap { height:72px; }.nav-links { display:none; position:absolute; top:62px; left:var(--pad-x); right:var(--pad-x); background:#fff; border-radius:18px; padding:20px; box-shadow:0 15px 30px #2e31381a; flex-direction:column; gap:18px; }.nav-links.is-open { display:flex; }.nav-cta { display:none; }.menu-button { display:block; color:var(--ink); }.hero { display:block; min-height:720px; padding:65px var(--pad-x) 20px; }.hero-copy { width:100%; }.hero-mascot { width:100%; height:290px; margin-top:16px; }.hero-glow { width:380px; height:320px; top:220px; right:-100px; }.pingo { transform:scale(.8) rotate(-5deg); }.float-label { display:none; }.section { padding:82px var(--pad-x); }.compare-grid,.feature-grid { grid-template-columns:1fr; }.feature-large { grid-row:auto; min-height:430px; }.steps-grid { grid-template-columns:1fr; gap:34px; }.step-beam { display:none; }.sidebar { width:125px; }.bookmark-content { padding:25px 18px; }.synced { display:none; }.signup-section { margin:0 auto 75px; padding:35px 25px; display:flex; flex-direction:column; align-items:flex-start; gap:18px; }.signup-mascot { align-self:center; }.signup-copy h2 { font-size:32px; }.signup-form,.signup-form>div { width:100%; }.signup-form>div { flex-direction:column; gap:10px; }.signup-form input { height:48px; }.signup-form .button { width:100%; } footer { margin:0 auto; flex-wrap:wrap; gap:13px; }.footer-links { width:100%; margin:6px 0 0; justify-content:space-between; }.browser-row { gap:15px; } }
 @media (prefers-reduced-motion: reduce) { *,*::before,*::after { animation-duration:.01ms!important; animation-iteration-count:1!important; scroll-behavior:auto!important; transition-duration:.01ms!important; } }
