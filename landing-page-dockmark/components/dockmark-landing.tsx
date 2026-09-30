@@ -2,6 +2,7 @@
 
 import { FormEvent, useEffect, useState } from 'react'
 import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
+import SyncHub from '@/components/sync-hub'
 import { ArrowRight, Check, Cloud, Download, GitBranch, LockKeyhole, Menu, Moon, ShieldCheck, Sparkles, Sun, X, Zap } from 'lucide-react'
 
 const browsers = [
@@ -103,7 +104,7 @@ export default function DockmarkLanding() {
 
       <section className="compat-section"><p>Funciona em todos</p><div className="browser-row">{browsers.map((browser, i) => <motion.div className="browser-pill" key={browser.name} {...reveal(i * 0.08)}><img className="browser-icon" src={browser.icon} alt="" />{browser.name}</motion.div>)}</div></section>
 
-      <section className="section comparison"><SectionIntro eyebrow="a dor conhecida" title="Trocar de navegador não deveria apagar seu caminho." copy="Seus favoritos contam a história de como você navega. O Dockmark garante que ela continue com você." /><div className="compare-grid"><motion.div className="compare-card chaos" {...reveal()}><span className="card-number">01</span><h3>Antes do Dockmark</h3><div className="messy-links"><span>★ receitas-de-domingo</span><span>★ pesquisa-importante</span><span>★ aquele artigo</span><span>★ inspiração</span></div><p>Exportar. Baixar. Reimportar.<br />De novo. E de novo.</p></motion.div><motion.div className="compare-card calm" {...reveal(0.15)}><span className="card-number">02</span><h3>Com o Dockmark</h3><div className="sync-visual"><Pingo small /><div className="sync-line" /><Cloud size={32} /></div><p>Abra o navegador que quiser.<br /><strong>Seus favoritos já estão lá.</strong></p><span className="check-stamp"><Check size={14} /> tudo no lugar</span></motion.div></div></section>
+      <section className="section comparison hub-section"><SectionIntro eyebrow="a dor conhecida" title="Trocar de navegador não deveria apagar seu caminho." copy="Seus favoritos contam a história de como você navega. O Dockmark garante que ela continue com você." /><SyncHub /></section>
 
       <section className="section steps-section" id="como-funciona"><SectionIntro eyebrow="sem complicação" title="Do seu navegador para a nuvem, em três passos." /><div className="steps-grid">{[['01','Instale','Adicione o Dockmark ao seu navegador favorito.'],['02','Conecte sua nuvem','Escolha onde seus favoritos vão morar.'],['03','Sincronize','Pronto. Eles acompanham você em todo lugar.']].map(([number, title, copy], i) => <motion.div className="step" key={number} {...reveal(i * 0.15)}><span className="step-number">{number}</span><div className="step-icon">{i === 0 ? <Download /> : i === 1 ? <Cloud /> : <Zap />}</div><h3>{title}</h3><p>{copy}</p>{i < 2 && <div className="step-beam" />}</motion.div>)}</div></section>
 
